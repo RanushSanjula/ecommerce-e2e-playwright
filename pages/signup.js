@@ -12,10 +12,10 @@ exports.signupPage = class signupPage {
         await this.page.goto('https://www.demoblaze.com/');
     }
 
-    async signup() {
+    async signup({ username, password }) {
         await this.signupButton1.click();
-        await this.usernameInput.fill('klgy96gj');
-        await this.passwordInput.fill('jguj78ygu');
+        await this.usernameInput.fill(username);
+        await this.passwordInput.fill(password);
         await this.signupButton2.click();
     }
 

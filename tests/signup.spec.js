@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { signupPage } from '../pages/signup'
+import { test } from '../fixtures/signup.fixture';
 
-test('Signup with valid information(P)', async ({ page }) => {
+test('Signup with valid information(P)', async ({ page, signupData }) => {
 
     let alertMessage = '';
 
@@ -12,7 +13,7 @@ test('Signup with valid information(P)', async ({ page }) => {
 
     const newSignup = new signupPage(page);
     await newSignup.navigate();
-    await newSignup.signup();
+    await newSignup.signup(signupData);
 
     await expect.poll(() => alertMessage).toBe('Sign up successful.');
 
