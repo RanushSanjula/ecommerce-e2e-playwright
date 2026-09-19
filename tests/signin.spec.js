@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { signinPage } from '../pages/signin'
-import { createSigninData, EmptyData } from '../data/signin.data';
+import { createSigninData, EmptyData, InvalidPwd, InvalidUsername } from '../data/signin.data';
 import { describe } from 'node:test';
 
 test.describe('Test Group 1', () => {
@@ -35,6 +35,37 @@ test.describe('Test Group 1', () => {
 
         await newSignin.signin(EmptyData());
         await expect.poll(() => alertMessage).toBe('Please fill out Username and Password.');
+
+
+    })
+
+    test('Log in with invalid password(N)', async ({ page }) => {
+
+        let alertMessage = '';
+
+        page.once('dialog', async (dialog) => {
+            alertMessage = dialog.message();
+            await dialog.accept();
+        });
+
+        await newSignin.signin(InvalidPwd());
+        await expect.poll(() => alertMessage).toBe('Wrong password.');
+
+
+    })
+
+
+    test('Log in with invalid username(N)', async ({ page }) => {
+
+        let alertMessage = '';
+
+        page.once('dialog', async (dialog) => {
+            alertMessage = dialog.message();
+            await dialog.accept();
+        });
+
+        await newSignin.signin(InvalidUsername());
+        await expect.poll(() => alertMessage).toBe('User does not exist.');
 
 
     })

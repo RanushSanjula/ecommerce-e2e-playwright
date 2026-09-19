@@ -11,3 +11,17 @@ export function EmptyData() {
         password: '',
     };
 }
+
+export function InvalidPwd() {
+    return {
+        username: 'RSK',
+        password: 'Test@234',
+    };
+}
+
+export function InvalidUsername() {
+    return {
+        username: 'RSK1',
+        password: 'Test@12345',
+    };
+}
