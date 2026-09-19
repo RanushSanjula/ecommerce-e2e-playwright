@@ -34,7 +34,7 @@ test('Verify whether the contact page works properly(P)', async ({ page }) => {
 
 })
 
-test('Verify whether the user cannot enter invalid email format', async ({ page }) => {
+test('Verify whether the user cannot enter invalid email format(N)', async ({ page }) => {
 
     let newContact;
     let alertMessage = '';
