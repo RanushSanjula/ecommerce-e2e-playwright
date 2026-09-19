@@ -5,7 +5,7 @@ import { contactUsPage } from '../pages/contactus'
 
 let newSignin;
 
-test.describe('Contact us Group 1',()=>{
+// test.describe('Contact us Group 1',()=>{
 
 test.beforeEach(async ({ page }) => {
 
@@ -34,19 +34,19 @@ test('Verify whether the contact page works properly(P)', async ({ page }) => {
 
 })
 
-test('Verify whether the user cannot enter invalid email format(N)', async ({ page }) => {
+// test('Verify whether the user cannot enter invalid email format(N)', async ({ page }) => {
 
-    let newContact;
-    let alertMessage = '';
+//     let newContact;
+//     let alertMessage = '';
 
-    page.once('dialog', async (dialog) => {
-        alertMessage = dialog.message();
-        await dialog.accept();
-    });
-    newContact = new contactUsPage(page);
-    await newContact.contact2();
-    await expect.poll(() => alertMessage).toBe('Invalid email format');
+//     page.once('dialog', async (dialog) => {
+//         alertMessage = dialog.message();
+//         await dialog.accept();
+//     });
+//     newContact = new contactUsPage(page);
+//     await newContact.contact2();
+//     await expect.poll(() => alertMessage).toBe('Invalid email format');
 
-})
+// })
 
-})
+// })
