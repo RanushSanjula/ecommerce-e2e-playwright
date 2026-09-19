@@ -4,6 +4,8 @@ import { test } from '../fixtures/signup.fixture';
 
 test.describe.configure({ mode: 'serial' });
 
+test.describe('Test Group 1', () => {
+
 test('Signup with valid information(P)', async ({ page, signupData }) => {
 
     let alertMessage = '';
@@ -35,5 +37,7 @@ test('Signup with already exist  information(N)', async ({ page, signupData }) =
     await newSignup.signup(signupData);
 
     await expect.poll(() => alertMessage).toBe('This user already exist.');
+
+})
 
 })
