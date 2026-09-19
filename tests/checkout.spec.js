@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { createSigninData } from '../data/signin.data';
 import { signinPage } from '../pages/signin';
-import { cartPage } from '../pages/cart';
+import { checkoutPage } from '../pages/checkout';
 
 let newSignin;
-let newCart;
+let newCheckout;
 
 test.beforeEach(async ({ page }) => {
 
@@ -18,19 +18,11 @@ test.beforeEach(async ({ page }) => {
 
 })
 
-test('Verify whether the cart works properly(P)', async ({ page }) => {
+test('Verify whether the checkout works properly(P)', async ({ page }) => {
 
-
-    let alertMessage = '';
-
-    page.once('dialog', async (dialog) => {
-        alertMessage = dialog.message();
-        await dialog.accept();
-    });
-
-    newCart = new cartPage(page);
-    await newCart.cart();
-    await expect.poll(() => alertMessage).toBe('Product added.');
-    
+    newCheckout = new checkoutPage(page);
+    await newCheckout.checkout();
+    await expect(page.locator('body')).toContainText('Thank you for your purchase!');
+    await page.getByRole('button', { name: 'OK' }).click();
 
 })
