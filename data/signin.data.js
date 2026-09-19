@@ -4,3 +4,10 @@ export function createSigninData() {
         password: 'Test@12345',
     };
 }
+
+export function EmptyData() {
+    return {
+        username: '',
+        password: '',
+    };
+}

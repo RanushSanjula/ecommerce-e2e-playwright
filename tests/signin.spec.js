@@ -1,16 +1,43 @@
 import { test, expect } from '@playwright/test';
 import { signinPage } from '../pages/signin'
-import { createSigninData } from '../data/signin.data';
+import { createSigninData, EmptyData } from '../data/signin.data';
+import { describe } from 'node:test';
 
+test.describe('Test Group 1', () => {
 
-test('Log in with valid credentials(P)', async ({ page }) => {
+    let newSignin;
 
-    const newSignin = new signinPage(page);
-    await newSignin.navigate();
-    await newSignin.signin(createSigninData());
-    await expect.poll(async () => (await page.locator('#nameofuser').textContent())?.trim(), {
-        timeout: 15000,
+    test.beforeEach(async ({ page }) => {
+        newSignin = new signinPage(page);
+        await newSignin.navigate();
     })
-        .toBe(`Welcome ${createSigninData().username}`);
+
+    test('Log in with valid credentials(P)', async ({ page }) => {
+
+
+        await newSignin.signin(createSigninData());
+        await expect.poll(async () => (await page.locator('#nameofuser').textContent())?.trim(), {
+            timeout: 15000,
+        })
+            .toBe(`Welcome ${createSigninData().username}`);
+
+    })
+
+    test('Log in with empty credentials(N)', async ({ page }) => {
+
+        let alertMessage = '';
+
+        page.once('dialog', async (dialog) => {
+            alertMessage = dialog.message();
+            await dialog.accept();
+        });
+
+
+        await newSignin.signin(EmptyData());
+        await expect.poll(() => alertMessage).toBe('Please fill out Username and Password.');
+
+
+    })
+
 
 })
