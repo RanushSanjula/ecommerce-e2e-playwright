@@ -1,6 +1,7 @@
 # Ecommerce App Playwright Automation
 
 End-to-end test automation for the [Demoblaze Product Store](https://www.demoblaze.com/) using Playwright Test and JavaScript.
+![Uploading A.png…]()
 
 ## Project Overview
 
