@@ -57,19 +57,7 @@ The tests use the Page Object Model (POM), reusable test data, and Playwright fi
 ## Test Coverage
 
 ### Sign-in
-
-- Valid credentials
-- Empty username and password
-- Invalid password
-- Invalid username
-
 ### Signup
-
-- Signup with valid information
-- Signup with an existing username
-
-The signup fixture generates a unique username for the valid signup scenario. Signup tests run serially because the existing-user scenario depends on the same worker-scoped signup data.
-
 ### Authenticated Workflows
 
 - Successful logout
