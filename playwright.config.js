@@ -81,6 +81,7 @@ export default defineConfig({
     ['list'],
     ['allure-playwright', { resultsDir: 'allure-results' }],
     ['html', { open: 'never' }],
+    ['./bug-reporter.js'],
   ],
   use: {
     screenshot: 'only-on-failure',
